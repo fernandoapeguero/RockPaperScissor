@@ -1,3 +1,13 @@
+// Scores
+
+let playerScore = 0;
+let computerScore = 0;
+
+const printScore = () => {
+  console.log(`Player Score: ${playerScore}`);
+  console.log(`Computer Score: ${computerScore}`);
+};
+
 const computerPlay = () => {
   const randomNumber = Math.floor(Math.random() * 3);
 
@@ -5,10 +15,11 @@ const computerPlay = () => {
 
   return rps[randomNumber];
 };
+// Selections
 
-const playerSelection = "rock";
+let playerSelection = "rock";
 
-const computerSelection = computerPlay();
+let computerSelection = computerPlay();
 
 const options = {
   paper: {
@@ -37,10 +48,24 @@ const playRound = (player, computer) => {
   if (playerValue === computerValue) {
     return "It's a draw play again";
   } else if (playerValue > computerValue) {
+    playerScore++;
     return `You win, ${player} beats ${computer}`;
   } else {
+    computerScore++;
     return `Computer Won, ${player}  beats ${computer}`;
   }
 };
 
-console.log(playRound(playerSelection, computerSelection));
+const game = () => {
+  playerSelection = prompt("Choose Rock, Paper or Scissor.", "Rock").trim();
+
+  playRound(playerSelection, computerSelection);
+
+  printScore();
+};
+
+for (let i = 0; i < 5; i++) {
+  game();
+}
+
+// Print score
